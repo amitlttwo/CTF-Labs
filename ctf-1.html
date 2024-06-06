@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XSS CTF Challenge</title>
+    <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+</head>
+<body>
+    <h1>XSS CTF Challenge</h1>
+    <div id="profile">
+        <h2>User Profile</h2>
+        <p>Welcome, <span id="username">Guest</span>!</p>
+    </div>
+    <form id="searchForm">
+        <label for="search">Search:</label>
+        <input type="text" id="search" name="search">
+        <input type="submit" value="Submit">
+    </form>
+    <div id="searchResults">
+        <!-- Search results will be displayed here -->
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            // Function to handle form submission
+            $("#searchForm").submit(function (event) {
+                event.preventDefault();
+                var query = $("#search").val();
+                $("#searchResults").html("Searching for: " + query);
+                // Insert code to display search results
+            });
+
+            // Code to display user's profile
+            var username = getUsername(); // Assume this function fetches username from server
+            $("#username").text(username);
+        });
+
+        // Function to fetch username from server (simulated)
+        function getUsername() {
+            // In a real scenario, this function might make an AJAX request to fetch the username
+            return "Alice"; // Simulated username
+        }
+    </script>
+</body>
+</html>
+
